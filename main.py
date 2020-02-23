@@ -83,7 +83,9 @@ def evaluate_expression(expression):
             if type(value) is list:
                 values.append(evaluate_expression(value))
 
-        final = 0 if first in "+-" else 1
+        final = 0
+        if first in "/*":
+            final = values.pop(0)
         for value in values:
             final = operator(final, value)
         return final
